@@ -12,3 +12,15 @@ resource "aws_vpc" "awstf" {
     Name = "fromtf"
   }
 }
+
+#lets create a subnet
+
+resource "aws_subnet" "web1" {
+  vpc_id = aws_vpc.awstf.id
+  cidr_block = "192.168.0.0/24"
+  availability_zone = "us-west-2a"
+  
+   tags = {
+    Name = "web1"
+  }
+}
