@@ -5,7 +5,7 @@ provider "aws" {
 # We need to create a vpc resource
 resource "aws_vpc" "awstf" {
     cidr_block = "192.168.0.0/16"
-    enable_dns_support = true
+    
     enable_dns_hostnames = true
     
      tags = {
@@ -13,7 +13,7 @@ resource "aws_vpc" "awstf" {
   }
 }
 
-#lets create a subnet
+#lets create a subnet web1
 
 resource "aws_subnet" "web1" {
   vpc_id = aws_vpc.awstf.id
@@ -22,5 +22,17 @@ resource "aws_subnet" "web1" {
   
    tags = {
     Name = "web1"
+  }
+}
+
+#lets create a subnet web2
+
+resource "aws_subnet" "web2" {
+  vpc_id = aws_vpc.awstf.id
+  cidr_block = "192.168.1.0/24"
+  availability_zone = "us-west-2b"
+  
+   tags = {
+    Name = "web2"
   }
 }
