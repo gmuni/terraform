@@ -1,20 +1,3 @@
-provider "aws" {
-    region = var.region
-}
-
-variable "region" {
-  type = string
-  default = "us-west-2"
-  description = "region in which awstf has to be created"
-  
-}
-
-variable "vpccidr" {
-  type = string
-  default = "192.168.0.0/16"
-  description = "cidr range of the vpc"
-}
-
 # We need to create a vpc resource
 resource "aws_vpc" "awstf" {
     cidr_block = var.vpccidr
@@ -26,26 +9,17 @@ resource "aws_vpc" "awstf" {
   }
 }
 
-#lets create a subnet web1
+#lets create a all subnets
 
-resource "aws_subnet" "web1" {
+resource "aws_subnet" "subnets" {
+  count = 6
   vpc_id = aws_vpc.awstf.id
-  cidr_block = "192.168.0.0/24"
-  availability_zone = "us-west-2a"
+  cidr_block = var.cidrranges[count.index]
+  availability_zone = var.subnetazs[count.index]
   
    tags = {
-    Name = "web1"
+    Name = var.subnets[count.index]
   }
 }
 
-#lets create a subnet web2
 
-resource "aws_subnet" "web2" {
-  vpc_id = aws_vpc.awstf.id
-  cidr_block = "192.168.1.0/24"
-  availability_zone = "us-west-2b"
-  
-   tags = {
-    Name = "web2"
-  }
-}
