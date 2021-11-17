@@ -14,7 +14,7 @@ resource "aws_vpc" "awstf" {
 resource "aws_subnet" "subnets" {
   count = 6
   vpc_id = aws_vpc.awstf.id
-  cidr_block = var.cidrranges[count.index]
+  cidr_block = cidrsubnet(var.vpccidr,8,count.index)  # var.vpccidr in vpccidr is variable name
   availability_zone = var.subnetazs[count.index]
   
    tags = {
