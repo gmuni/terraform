@@ -50,13 +50,15 @@ resource "aws_route_table" "publicrt" {
     gateway_id = aws_internet_gateway.awstfigw.id
   } 
 
-   
-
-   depends_on = [
+    depends_on = [
      aws_vpc.awstf,
      aws_subnet.subnets[0],
      aws_subnet.subnets[1],
    ]
+
+    tags = {
+      "Name" = "publicrt"
+    }
 }
 
 resource "aws_route_table_association" "webassociation" {
@@ -69,3 +71,29 @@ resource "aws_route_table_association" "webassociation" {
   ]
 }
 
+resource "aws_route_table" "privatert" {
+  vpc_id = aws_vpc.awstf.id
+
+   depends_on = [
+     aws_vpc.awstf,
+     aws_subnet.subnets[2],
+     aws_subnet.subnets[3],
+     aws_subnet.subnets[4],
+     aws_subnet.subnets[5],
+   ]
+
+ tags = {
+      "Name" = "privatert"
+    }
+
+}
+
+resource "aws_route_table_association" "appassociations" {
+  count = 4
+  route_table_id = aws_route_table.privatert.id
+  subnet_id = aws_subnet.subnets[count.index +2].id
+
+  depends_on = [
+    aws_route_table.privatert
+  ]
+}
