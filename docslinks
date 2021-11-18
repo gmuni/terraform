@@ -1,3 +1,8 @@
 https://registry.terraform.io/providers/hashicorp/aws/latest/docs - terraform aws provider
 https://www.terraform.io/docs/language/values/variables.html      - input varaibles
 https://www.terraform.io/docs/language/meta-arguments/count.html  - terraform count
+https://www.terraform.io/docs/language/functions/index.html   - terraform expressions
+
+terraform apply -var "region=ap-south-1" -var "vpccidr=172.16.0.0/16"
+
+https://www.terraform.io/docs/language/values/locals.html - for the documentation of local variable
