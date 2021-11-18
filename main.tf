@@ -21,6 +21,24 @@ resource "aws_subnet" "subnets" {
    tags = {
     Name = local.subnets[count.index]
   }
+  
+  depends_on = [
+      aws_vpc.awstf  
+  ]
+
+}
+
+resource "aws_internet_gateway" "awstfigw" {
+    vpc_id = aws_vpc.awstf.id
+
+    tags = {
+      "Name" = local.igw_name
+    }
+
+    depends_on = [
+      aws_vpc.awstf
+    ]
+  
 }
 
 
