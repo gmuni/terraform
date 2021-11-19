@@ -102,3 +102,28 @@ resource "aws_route_table_association" "privateassociation" {
    ]
 
 }
+
+# create a web security group
+resource "aws_security_group" "websg" {
+  name = "websg"
+  description = "open 22 and 80 port for all"
+  vpc_id = aws_vpc.awstf.id
+
+  ingress {
+    cidr_blocks = [ local.anywhere ]
+    description = "open ssh port"
+    from_port = local.ssh
+    protocol = local.tcp
+    to_port = local.ssh
+  }
+
+  ingress {
+    cidr_blocks = [ local.anywhere ]
+    description = "open http port"
+    from_port = local.http
+    protocol = local.tcp
+    to_port = local.http
+  }
+
+    depends_on = [ aws_route_table.privatert, aws_route_table.publicrt  ]
+}
