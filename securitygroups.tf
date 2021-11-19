@@ -28,6 +28,7 @@ resource "aws_subnet" "subnets" {
 
 }
 
+# this creates a IGW
 resource "aws_internet_gateway" "awstfigw" {
     vpc_id = aws_vpc.awstf.id
 
@@ -41,7 +42,7 @@ resource "aws_internet_gateway" "awstfigw" {
   
 }
 
-#Create a route table
+#Create a public route table
 resource "aws_route_table" "publicrt" {
   vpc_id = aws_vpc.awstf.id
 
@@ -73,6 +74,7 @@ resource "aws_route_table_association" "webassociations" {
   
 }
 
+#create private route table
 resource "aws_route_table" "privatert" {
   vpc_id = aws_vpc.awstf.id
 

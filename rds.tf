@@ -21,8 +21,8 @@ resource "aws_db_instance" "ntierdb" {
     instance_class = "db.t2.micro"
     name = "ntierdb"
     vpc_security_group_ids = [ aws_security_group.dbsg.id ]
-    username = "admin"
-    password = "admin"
+    username = "admin123"
+    password = "admin123"
     tags = {
       "Name" = "ntierdb"
     }
