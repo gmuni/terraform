@@ -23,21 +23,26 @@ resource "aws_instance" "webserver1" {
       "Name" = "webserver 1"
     }
 
- # ssh -i terraform.pem ubuntu@publicip
+   depends_on = [ aws_db_instance.ntierdb ]
+    
+}
+
+resource "null_resource" "nullprovisoning" {
+      # ssh -i terraform.pem ubuntu@publicip
     connection {
       type = "ssh"
       user = "ubuntu"
       private_key = file("./terraform.pem")
-      host = self.public_ip
+      host = aws_instance.webserver1.public_ip
     }
-
     provisioner "remote-exec" {
       inline = [
         "sudo apt update", 
-        "sudo apt install apache2 -y"]
+        "sudo apt install apache2 -y",
+        "sudo apt install php libapache2-mod-php php-mysql php-cli -y",
+        "echo '<?php phpinfo(); ?>'| sudo tee /var/www/html/info.php"]
+    }
 
-    }    
-
-    depends_on = [ aws_db_instance.ntierdb ]
-    
+    depends_on = [ aws_instance.webserver1 ]
+  
 }
