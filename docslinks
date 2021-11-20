@@ -6,3 +6,22 @@ https://www.terraform.io/docs/language/functions/index.html   - terraform expres
 terraform apply -var "region=ap-south-1" -var "vpccidr=172.16.0.0/16"
 
 https://www.terraform.io/docs/language/values/locals.html - for the documentation of local variable
+https://www.terraform.io/docs/language/functions/index.html   - terraform expressions
+
+terraform apply -var "region=ap-south-1" -var "vpccidr=172.16.0.0/16"
+
+https://www.terraform.io/docs/language/values/locals.html - for the documentation of local variable
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway - igw
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table       - RT
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association - RT association
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet_ids - data resouce subnetids
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group   - sg
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_subnet_group  - db subnet groups
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance   - db instance
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance      - ec2 instance
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami         - data sources ami
+https://www.terraform.io/docs/language/resources/provisioners/syntax.html            - terraform provisioners/syntax
+https://www.terraform.io/docs/language/resources/provisioners/connection.html   - provision connections
+https://www.terraform.io/docs/language/values/outputs.html                       - terraform outputs
+https://registry.terraform.io/                   - terraform registry
+https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest        - vpc module
